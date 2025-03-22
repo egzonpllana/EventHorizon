@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "09335FF2-3571-499E-BF7E-96E40B68E21D",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "EventHorizonTests",
+        "name" : "EventHorizonTests"
+      }
+    }
+  ],
+  "version" : 1
+}
