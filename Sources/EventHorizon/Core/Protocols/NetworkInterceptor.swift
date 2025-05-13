@@ -56,4 +56,19 @@ public protocol NetworkInterceptorProtocol: Sendable {
         response: URLResponse?,
         data: Data?
     ) -> (URLResponse?, Data?)
+    
+    // MARK: - Asynchronous API (Optional)
+    func interceptAsync(request: URLRequest) async throws -> URLRequest
+    func interceptAsync(response: URLResponse?, data: Data?) async throws -> (URLResponse?, Data?)
+}
+
+// Default async implementations that just call the sync versions
+public extension NetworkInterceptorProtocol {
+    func interceptAsync(request: URLRequest) async throws -> URLRequest {
+        intercept(request: request)
+    }
+
+    func interceptAsync(response: URLResponse?, data: Data?) async throws -> (URLResponse?, Data?) {
+        intercept(response: response, data: data)
+    }
 }

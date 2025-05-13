@@ -180,7 +180,7 @@ private extension APIClient {
 
         // Apply request interceptors
         for interceptor in interceptors {
-            mutableRequest = interceptor.intercept(request: mutableRequest)
+            mutableRequest = try await interceptor.interceptAsync(request: mutableRequest)
         }
 
         // If a progress delegate is provided, create a new session instance.
@@ -200,7 +200,7 @@ private extension APIClient {
             var modifiedData = data
             var modifiedResponse = response
             for interceptor in interceptors {
-                let result = interceptor.intercept(response: modifiedResponse, data: modifiedData)
+                let result = try await interceptor.interceptAsync(response: modifiedResponse, data: modifiedData)
                 modifiedResponse = result.0 ?? modifiedResponse
                 modifiedData = result.1 ?? modifiedData
             }
